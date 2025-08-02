@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ThirstMeter™ 4800</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle, #00c6ff, #0072ff);
+      font-family: 'Segoe UI', sans-serif;
+      color: #fefae0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    #dropCounter {
+      font-size: 28px;
+      margin-top: 20px;
+    }
+
+    #message {
+      margin-top: 30px;
+      font-size: 26px;
+      font-style: italic;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 12px 24px;
+      border: none;
+      background: #fefae0;
+      color: #005f73;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: 0.2s ease-in-out;
+    }
+    
+    p {
+      font-size: 25px;
+    }
+
+    button:hover {
+      background: #e9edc9;
+    }
+  </style>
+</head>
+<body>
+  <h1>💧 ThirstMeter™</h1>
+  <p>How many droplets does it take to quench your thirst?</p>
+  <button onclick="startDrinking()">Start Drinking</button>
+  <div id="dropCounter"></div>
+  <div id="message"></div>
+  
+
+
+  <script>
+    let dropCount = 0;
+    let thirstDrop;
+
+    function startDrinking() {
+      dropCount = 0;
+      document.getElementById("message").innerText = "";
+      document.getElementById("dropCounter").innerText = "💧 Starting drop count...";
+
+      // Random drop count near 4800 (range: 4600–5000)
+      thirstDrop = Math.floor(Math.random() * 401) + 4600;
+
+      const interval = setInterval(() => {
+        dropCount += 10; // Count in batches of 50 to simulate faster
+        document.getElementById("dropCounter").innerText = `💧 Drops: ${dropCount}`;
+
+        if (dropCount >= thirstDrop) {
+          clearInterval(interval);
+          document.getElementById("dropCounter").innerText = `💧 Drops: ${thirstDrop}`;
+          document.getElementById("message").innerText =
+            `✅ Thirst faded after approximately ${thirstDrop} droplets! 🧊`;
+        }
+      }, 50); // Adjust speed here (lower = faster)
+       }
+    
+
+  </script>
+</body>
+</html>
+
